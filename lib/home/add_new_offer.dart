@@ -14,6 +14,11 @@ class AddNewOffer extends StatefulWidget {
 }
 
 class _AddNewOfferState extends State<AddNewOffer> {
+  TextEditingController _offertitle=TextEditingController();
+  TextEditingController _offerdescriptioon=TextEditingController();
+  TextEditingController _offerstartfrom=TextEditingController();
+  TextEditingController _offerend=TextEditingController();
+  TextEditingController _discountpercentage=TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -67,12 +72,12 @@ class _AddNewOfferState extends State<AddNewOffer> {
               SizedBox(
                 height: size.height*.04,
               ),
-               MyTextFieldWidget(hintText:'Offer Title',check: false,),
+               MyTextFieldWidget(hintText:'Offer Title',check: false, textEditingController: _offertitle,),
               SizedBox(
                 height: size.height*.025,
               ),
 
-              MyTextFieldWidget(hintText:'Offer Description',check: false,),
+              MyTextFieldWidget(hintText:'Offer Description',check: false,textEditingController: _offerdescriptioon,),
               SizedBox(
                 height: size.height*.025,
               ),
@@ -83,13 +88,13 @@ class _AddNewOfferState extends State<AddNewOffer> {
                   children: [
                     Container(
                         width: size.width*.41,
-                        child: MyTextFieldWidget(hintText:'Offer Start From',check: false,)),
+                        child: MyTextFieldWidget(hintText:'Offer Start From',check: false,textEditingController: _offerstartfrom,)),
                     SizedBox(
                       width: size.width*.02,
                     ),
                     Container(
                         width: size.width*.41,
-                        child: MyTextFieldWidget(hintText:'Offer End on',check: false,)),
+                        child: MyTextFieldWidget(hintText:'Offer End on',check: false,textEditingController: _offerend,)),
                   ],
                 ),
               ),
@@ -98,7 +103,7 @@ class _AddNewOfferState extends State<AddNewOffer> {
                 height: size.height*.025,
               ),
 
-              MyTextFieldWidget(hintText:'Discount Percentage',check: false,),
+              MyTextFieldWidget(hintText:'Discount Percentage',check: false,textEditingController: _discountpercentage,),
               SizedBox(
                 height: size.height*.14,
               ),

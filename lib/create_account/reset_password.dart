@@ -15,6 +15,8 @@ class amii extends StatefulWidget {
 }
 
 class _amiiState extends State<amii> {
+  TextEditingController _password=TextEditingController();
+  TextEditingController _Confirmnewpass=TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
@@ -72,12 +74,12 @@ class _amiiState extends State<amii> {
                 height: size.height*.03,
               ),
               MyTextFieldWidget(hintText:'Password',IconLeft:Icons.lock,check: true,
-                IconRight: Icon(Icons.remove_red_eye_outlined,size: 16,),),
+                IconRight: Icon(Icons.remove_red_eye_outlined,size: 16,), textEditingController: _password,),
               SizedBox(
                 height: size.height*.03,
               ),
               MyTextFieldWidget(hintText:'Confirm New Password',IconLeft:Icons.lock,check: true,
-                IconRight: Icon(Icons.remove_red_eye_outlined,size: 16,),),
+                IconRight: Icon(Icons.remove_red_eye_outlined,size: 16,),textEditingController: _Confirmnewpass,),
 
               SizedBox(
                 height: size.height*.35,

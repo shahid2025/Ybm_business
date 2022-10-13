@@ -14,6 +14,7 @@ class Forgotpassword extends StatefulWidget {
 }
 
 class _ForgotpasswordState extends State<Forgotpassword> {
+  TextEditingController _phone =TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
@@ -75,7 +76,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
               SizedBox(
                 height: size.height*.03,
               ),
-              MyTextFieldWidget(hintText:'Phone Number',IconLeft:Icons.phone,check: true,),
+              MyTextFieldWidget(hintText:'Phone Number',IconLeft:Icons.phone,check: true, textEditingController: _phone,),
             SizedBox(
                 height: size.height*.35,
               ),

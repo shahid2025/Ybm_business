@@ -15,6 +15,11 @@ class SetUp_Company extends StatefulWidget {
 }
 
 class _SetUp_CompanyState extends State<SetUp_Company> {
+
+  TextEditingController _BuisnessName=TextEditingController();
+  TextEditingController _Buisnessdescriptioon=TextEditingController();
+  TextEditingController _BuisnessAddress=TextEditingController();
+  TextEditingController _Vatregistrationnumber=TextEditingController();
   List <String> text=['Electronics','Foods','Auto','foods'];
   List colors = [Color(0xff41CAFF), Color(0xff41caff), Color(0xff41caff), Color(0xff41caff),];
   @override
@@ -90,18 +95,18 @@ class _SetUp_CompanyState extends State<SetUp_Company> {
               ),
 
 
-              MyTextFieldWidget(hintText:'Buisness Name',IconLeft:Icons.person,check: true,),
+              MyTextFieldWidget(hintText:'Buisness Name',IconLeft:Icons.person,check: true, textEditingController: _BuisnessName,),
               SizedBox(
                 height: size.height*.03,
               ),
               Container(
                   height: size.height*.14,
-                  child: MyTextFieldWidget(hintText:'Buisness Description',IconLeft:Icons.description,check: true,)),
+                  child: MyTextFieldWidget(hintText:'Buisness Description',IconLeft:Icons.description,check: true,textEditingController: _Buisnessdescriptioon,)),
 
               SizedBox(
                 height: size.height*.03,
               ),
-              MyTextFieldWidget(hintText:'Buisness Address',IconLeft:Icons.person,check: true,),
+              MyTextFieldWidget(hintText:'Buisness Address',IconLeft:Icons.person,check: true,textEditingController: _BuisnessAddress,),
 
               SizedBox(
                 height: size.height*.03,
@@ -212,7 +217,7 @@ class _SetUp_CompanyState extends State<SetUp_Company> {
               ),
 
 
-              MyTextFieldWidget(hintText:'VAT Reg.Number(Optional)',IconLeft:Icons.person,check: true,),
+              MyTextFieldWidget(hintText:'VAT Reg.Number(Optional)',IconLeft:Icons.person,check: true,textEditingController: _Vatregistrationnumber,),
               SizedBox(
                 height: size.height*.013,
               ),

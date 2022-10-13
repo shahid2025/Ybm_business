@@ -10,6 +10,8 @@ class BookedMarked extends StatefulWidget {
 }
 
 class _BookedMarkedState extends State<BookedMarked> {
+  TextEditingController _search=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -59,7 +61,11 @@ class _BookedMarkedState extends State<BookedMarked> {
                 SizedBox(
                   height: size.height*.02,
                 ),
-                MyTextFieldWidget(hintText:'Search Busineess',IconLeft:Icons.search,check: true,IconRight: Icon(Icons.location_on_outlined,size: 16,),),
+                MyTextFieldWidget(
+
+                  hintText:'Search Busineess',IconLeft:Icons.search,check: true,
+                  IconRight: Icon(Icons.location_on_outlined,size: 16,),
+                  textEditingController: _search,),
 
               ],
             ),

@@ -13,6 +13,10 @@ class Edit_profile1 extends StatefulWidget {
 }
 
 class _Edit_profile1State extends State<Edit_profile1> {
+  TextEditingController _fullName=TextEditingController();
+  TextEditingController _username=TextEditingController();
+  TextEditingController _email=TextEditingController();
+  TextEditingController _phonenumber=TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size =MediaQuery.of(context).size;
@@ -46,20 +50,20 @@ appBar: AppBar(
             SizedBox(
               height: size.height*.06,
             ),
-            MyTextFieldWidget(hintText:'Full Name',IconLeft:Icons.person,check: true,),
+            MyTextFieldWidget(hintText:'Full Name',IconLeft:Icons.person,check: true, textEditingController: _fullName,),
             SizedBox(
               height: size.height*.03,
             ),
-            MyTextFieldWidget(hintText:'Username',IconLeft:Icons.person,check: true,),
+            MyTextFieldWidget(hintText:'Username',IconLeft:Icons.person,check: true,textEditingController: _username,),
             SizedBox(
               height: size.height*.03,
             ),
-            MyTextFieldWidget(hintText:'Email',IconLeft:Icons.email_outlined,check: true,),
+            MyTextFieldWidget(hintText:'Email',IconLeft:Icons.email_outlined,check: true,textEditingController: _email,),
             SizedBox(
               height: size.height*.03,
             ),
 
-            MyTextFieldWidget(hintText:'Phone Number',IconLeft:Icons.phone,check: true,),
+            MyTextFieldWidget(hintText:'Phone Number',IconLeft:Icons.phone,check: true,textEditingController: _phonenumber,),
 
 
             SizedBox(

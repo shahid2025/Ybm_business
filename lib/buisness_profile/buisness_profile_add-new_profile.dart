@@ -13,6 +13,10 @@ class Buisness_add_new_profile extends StatefulWidget {
 }
 
 class _Buisness_add_new_profileState extends State<Buisness_add_new_profile> {
+  TextEditingController _title=TextEditingController();
+  TextEditingController _descriptioon=TextEditingController();
+  TextEditingController _price=TextEditingController();
+ 
   String dropdownValue = 'eng';
   @override
   Widget build(BuildContext context) {
@@ -45,14 +49,14 @@ class _Buisness_add_new_profileState extends State<Buisness_add_new_profile> {
                 height: size.height*.04,
               ),
 
-              MyTextFieldWidget(hintText:'Title',check: false,),
+              MyTextFieldWidget(hintText:'Title',check: false,textEditingController: _title,),
               SizedBox(
                 height: size.height*.025,
               ),
               Container(
                   height: size.height*.16,
                   width: size.width*.85,
-                  child: MyTextFieldWidget(hintText:'Offer Description',check: false,)),
+                  child: MyTextFieldWidget(hintText:'Offer Description',check: false,textEditingController: _descriptioon,)),
               SizedBox(
                 height: size.height*.025,
               ),
@@ -96,7 +100,7 @@ class _Buisness_add_new_profileState extends State<Buisness_add_new_profile> {
               SizedBox(
                 height: size.height*.025,
               ),
-              MyTextFieldWidget(hintText:'Price',check: false,),
+              MyTextFieldWidget(hintText:'Price',check: false, textEditingController: _price,),
               SizedBox(
                 height: size.height*.025,
               ),

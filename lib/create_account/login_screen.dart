@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:ybm_business/bloc/register/register_bloc.dart';
 import 'package:ybm_business/bottom_navigation/app_bootom_navigation_bar.dart';
-import 'package:ybm_business/create_account/forgot%20password.dart';
-import 'package:ybm_business/create_account/sign_up.dart';
 import 'package:ybm_business/my_widgets/button%20widget.dart';
 import 'package:ybm_business/my_widgets/myTextField_Widget.dart';
 import 'package:ybm_business/routes/routes_name.dart';
@@ -14,16 +16,33 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _email=TextEditingController();
+  TextEditingController _password=TextEditingController();
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
   }
+
+
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
+      body:
+      BlocConsumer(
+        bloc: BlocProvider.of<RegisterBloc>(context),
+        listener: (context, state) {
+          // TODO: implement listener
+          if (state is RegisterSuccess) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AppBottomNavigationBar()));
+           }
+        },
+  builder: (context, state) {
+    print("2"+ state.toString());
+    if (state is RegisterInitial) {
+    return SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
@@ -58,12 +77,12 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: size.height*.03,
               ),
-              MyTextFieldWidget(hintText:'Username',IconLeft:Icons.person_outline_rounded,check: true,),
+              MyTextFieldWidget(hintText:'Username',IconLeft:Icons.person_outline_rounded,check: true, textEditingController: _email,),
               SizedBox(
                 height: 20,
               ),
 
-              MyTextFieldWidget(hintText:'Password',IconLeft:Icons.lock,check: true,
+              MyTextFieldWidget(hintText:'Password',IconLeft:Icons.lock,check: true,textEditingController: _password,
                 IconRight: Icon(Icons.remove_red_eye_outlined,size: 16,),),
 
               SizedBox(
@@ -115,67 +134,77 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                   height:size.height*.0
               ),
-              Container(
-                height: size.height*.07,
-                width: size.width*.80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(width: 0.0, color: Colors.grey),
-                        ),
-                        height: size.height*.05,
-                        width: size.width*.35,
-                        child: Row(
-                            children: [
-                              Container(
-                                height: 27,
-                                width: 27,
-                                //  child: Icon(Icons.facebook),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 8),
-                                  child: Image.asset(
-                                    "assets/images/google.png",
+              GestureDetector(
+                onTap: (){
+                  BlocProvider.of<RegisterBloc>(context).add(GoogleSignInEvent());
+                },
+                child: Container(
+                  height: size.height*.07,
+                  width: size.width*.80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(width: 0.0, color: Colors.grey),
+                          ),
+                          height: size.height*.05,
+                          width: size.width*.35,
+                          child: Row(
+                              children: [
+                                Container(
+                                  height: 27,
+                                  width: 27,
+                                  //  child: Icon(Icons.facebook),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8),
+                                    child: Image.asset(
+                                      "assets/images/google.png",
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                  width:size.width*.02
-                              ),
-                              Container(
-                                child: Text('Login With Google',style: TextStyle(fontSize: 10),),
-                              )
-                            ])),
-                    SizedBox(
-                        width:size.width*.05
-                    ),
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(width: 0.0, color: Colors.grey),
-                        ),
-                        height: size.height*.05,
-                        width: size.width*.35,
-                        child: Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 30,
-                                //  child: Icon(Icons.facebook),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 0),
-                                  child: Image.asset(
-                                    "assets/images/facebook.png",
-                                  ),
+                                SizedBox(
+                                    width:size.width*.02
                                 ),
-                              ),
-                              Container(
-                                child: Text('Login With Facebook',style: TextStyle(fontSize: 09)),
-                              )
-                            ])),
-                  ],),
+                                Container(
+                                  child: Text('Login With Google',style: TextStyle(fontSize: 10),),
+                                )
+                              ])),
+                      SizedBox(
+                          width:size.width*.05
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          signInWithFacebook();
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(width: 0.0, color: Colors.grey),
+                            ),
+                            height: size.height*.05,
+                            width: size.width*.35,
+                            child: Row(
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    //  child: Icon(Icons.facebook),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 0),
+                                      child: Image.asset(
+                                        "assets/images/facebook.png",
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text('Login With Facebook',style: TextStyle(fontSize: 09)),
+                                  )
+                                ])),
+                      ),
+                    ],),
+                ),
               ),
 
 
@@ -210,7 +239,28 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-      ),
+      );
+    } else {
+      return Center(child: CircularProgressIndicator());
+    }
+  },
+),
     );
+  }
+  //this is for facebook function
+  Future<UserCredential> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login(
+        permissions: ['email','public profile','user_birthday']
+    );
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    final userData = await FacebookAuth.instance.getUserData();
+   // userEmail = userData['email'];
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 }

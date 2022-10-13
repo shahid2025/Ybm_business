@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ybm_buisness</string>
+    <string name="facebook_app_id">888537819219114</string>
+    <string name="fb_login_protocol_scheme">fb888537819219114</string>
+    <string name="facebook_client_token">55176dd58895ca0e644f3213c54f3b0e</string>
+
+
+</resources>

@@ -9,6 +9,8 @@ class searcches extends StatefulWidget {
 }
 
 class _searcchesState extends State<searcches> {
+  TextEditingController _searchBuisness=TextEditingController();
+
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
   Color kGreyColor = Colors.grey.withOpacity(0.2);
@@ -88,7 +90,8 @@ class _searcchesState extends State<searcches> {
                         SizedBox(
                           height: size.height*.02,
                         ),
-                        MyTextFieldWidget(hintText:'Search Busineess',check: true,IconLeft:Icons.search,IconRight: Icon(Icons.location_on_outlined,size: 16,),),
+                        MyTextFieldWidget(hintText:'Search Busineess',check: true,IconLeft:Icons.search,
+                          IconRight: Icon(Icons.location_on_outlined,size: 16,), textEditingController: _searchBuisness,),
 
                       ],
                     ),
